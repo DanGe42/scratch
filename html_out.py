@@ -4,7 +4,7 @@ def generate_html(header, data_entry, title_index):
     <html>
         <head>
             <title>""" + name + """</title>
-            <link href="css/styles.css" rel="stylesheet" type="text/css" />
+            <link href="../css/styles.css" rel="stylesheet" type="text/css" />
         </head>
         <body>
             <h1>""" + name + """'s Application</h1>
