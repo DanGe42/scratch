@@ -1,0 +1,39 @@
+article, aside, footer, header, nav, section {
+    display: block;
+}
+body {
+    background: #FFF;
+    width: 600px;
+    margin-left: 50px;
+}
+section {
+    padding-left: 8px;
+}
+article > h1 {
+  font: bold 24px "Helvetica Neue", Arial, sans-serif;
+  line-height: 16px;
+  color: #006600;
+}
+article > h2 {
+  font: bold 18px "Helvetica Neue", Arial, sans-serif;
+  color: #336B33;
+}
+.info-list {
+  list-style: none;
+  padding-left: 0;
+}
+.info-list, article li, article p {
+  font: 16px Georgia, serif;
+  line-height: 24px;
+  color: #003333;
+}
+article a:link {
+  color: #FF0066;
+}
+article a:visited {
+  color: #8F0047;
+}
+article a:hover {
+  text-decoration: none;
+}
+
