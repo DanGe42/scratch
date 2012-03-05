@@ -14,3 +14,9 @@ main = hakyll $ do
         compile compressCssCompiler
 
     match "templates/*" $ compile templateCompiler
+
+    match (list ["index.html"]) $ do
+        route   $ setExtension "html"
+        compile $ pageCompiler
+            >>> applyTemplateCompiler "templates/default.html"
+            -- >>> relativizeUrlsCompiler
