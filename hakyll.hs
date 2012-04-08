@@ -2,6 +2,8 @@
 import Control.Arrow ((>>>), arr)
 import Data.Monoid (mempty)
 
+import System.FilePath
+
 import Hakyll
 
 main :: IO ()
@@ -14,33 +16,33 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match "templates/*" $ compile templateCompiler
-
-    {-match "index.html" $ route idRoute
-    create "index.html" $ constA mempty
-        >>> arr (setField "title" "Home")
-        >>> arr (setField "css" $ insertCSS Nothing)
-        >>> arr (setField "scripts" $ insertJS Nothing)
-        >>> applyTemplateCompiler "templates/index.html"
-        >>> applyTemplateCompiler "templates/default.html"
-        >>> relativizeUrlsCompiler-}
-    match (list ["index.html"]) $ do
-        route   $ setExtension "html"
+    match "templates/projects.html" $ do
+        route $ composeRoutes setRoot routeToDir
         compile $ pageCompiler
+            >>> arr (setField "title" "Projects")
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
-    match "projects.html" $ route idRoute
-    create "/projects/index.html" $ constA mempty
-        >>> arr (setField "title" "Projects")
-        >>> applyTemplateCompiler "templates/default.html"
-        >>> applyTemplateCompiler "templates/projects.html"
-        >>> relativizeUrlsCompiler
+    match "templates/*" $ compile templateCompiler
 
-insertCSS :: Maybe String -> String
+
+-------------------------------------------------------------------------------
+-- Utility routing functions
+-------------------------------------------------------------------------------
+routeToDir :: Routes
+routeToDir = customRoute fileToDir
+  where   -- fileToDir :: Identifier a -> FilePath
+    fileToDir x = dropExtension (toFilePath x) </> "index.html"
+
+setRoot :: Routes
+setRoot = customRoute stripTopDir
+  where
+    stripTopDir = joinPath . tail . splitPath . toFilePath
+
+{-insertCSS :: Maybe String -> String
 insertCSS Nothing = []
 insertCSS (Just path) = "<link rel=\"stylesheet\" type=\"text/css\" href=\"" ++ path ++ "\">"
 
 insertJS :: Maybe String -> String
 insertJS Nothing = []
-insertJS (Just path) = "<script type=\"text/javascript\" src=\"" ++ path ++ "\"></script>"
+insertJS (Just path) = "<script type=\"text/javascript\" src=\"" ++ path ++ "\"></script>" -}
