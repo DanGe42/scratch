@@ -16,6 +16,14 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
+    match "js/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "robots.txt" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match "templates/projects.html" $ do
         route $ composeRoutes setRoot routeToDir
         compile $ pageCompiler

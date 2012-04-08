@@ -21,3 +21,18 @@ title: Home
                     <li>StackOverFlow: <a href="http://stackoverflow.com/users/778418/kibibyte">kibibyte</a></li>
                 </ul>
             </article>
+
+            <script type="text/javascript">
+                function reverse(str) {
+                    var rev = "";
+                    for (var i = 0; i < str.length; i++) {
+                        rev += str.charAt(str.length-1 - i);
+                    }
+                    return rev;
+                }
+
+                var emailStr = "ude.nnepu.saes@egnad";
+                var emailElem = document.getElementById("email");
+                emailStr = reverse(emailStr);
+                emailElem.innerHTML = "<a href=\"mailto:" + emailStr + "\">" + emailStr + "</a>";
+            </script>
