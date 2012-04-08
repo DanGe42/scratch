@@ -19,7 +19,12 @@ main = hakyll $ do
     match "templates/projects.html" $ do
         route $ composeRoutes setRoot routeToDir
         compile $ pageCompiler
-            >>> arr (setField "title" "Projects")
+            >>> applyTemplateCompiler "templates/default.html"
+            >>> relativizeUrlsCompiler
+
+    match "home.html" $ do
+        route $ customRoute (\_ -> toFilePath "index.html")
+        compile $ pageCompiler
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
