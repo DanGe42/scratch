@@ -36,6 +36,19 @@ main = hakyll $ do
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
+    match "blog.html" $ do
+        route $ composeRoutes setRoot routeToDir
+        compile $ pageCompiler
+            >>> applyTemplateCompiler "templates/default.html"
+            >>> relativizeUrlsCompiler
+
+    match "posts/*" $ do
+        route $ setRoot `composeRoutes` routePost `composeRoutes` (setExtension "html")
+        compile $ pageCompiler
+            >>> applyTemplateCompiler "templates/post.html"
+            >>> applyTemplateCompiler "templates/default.html"
+            >>> relativizeUrlsCompiler
+
     match "templates/*" $ compile templateCompiler
 
 
@@ -51,6 +64,11 @@ setRoot :: Routes
 setRoot = customRoute stripTopDir
   where
     stripTopDir = joinPath . tail . splitPath . toFilePath
+
+routePost :: Routes
+routePost = customRoute toBlog
+  where
+    toBlog x = "blog" </> (toFilePath x)
 
 {-insertCSS :: Maybe String -> String
 insertCSS Nothing = []
