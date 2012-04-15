@@ -24,12 +24,6 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "templates/projects.html" $ do
-        route $ composeRoutes setRoot routeToDir
-        compile $ pageCompiler
-            >>> applyTemplateCompiler "templates/default.html"
-            >>> relativizeUrlsCompiler
-
     match "home.html" $ do
         route $ customRoute (\_ -> toFilePath "index.html")
         compile $ readPageCompiler
@@ -38,17 +32,25 @@ main = hakyll $ do
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
-    match "blog.html" $ do
-        route $ composeRoutes setRoot routeToDir
-        compile $ pageCompiler
-            >>> applyTemplateCompiler "templates/default.html"
-            >>> relativizeUrlsCompiler
-
     match "posts/*" $ do
         route $ setRoot `composeRoutes` routePost `composeRoutes` (setExtension "html")
         compile $ pageCompiler
             >>> arr (setField "scripts" "")
             >>> applyTemplateCompiler "templates/post.html"
+            >>> applyTemplateCompiler "templates/default.html"
+            >>> relativizeUrlsCompiler
+
+    match "blog.html" $ route routeToDir
+    create "blog.html" $ constA mempty
+        >>> arr (setField "title" "Recent Posts")
+        >>> setFieldPageList recentFirst "templates/post_item.html" "posts" "posts/*"
+        >>> applyTemplateCompiler "templates/blog.html"
+        >>> applyTemplateCompiler "templates/default.html"
+        >>> relativizeUrlsCompiler
+
+    match "templates/projects.html" $ do
+        route $ setRoot `composeRoutes` routeToDir
+        compile $ pageCompiler
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
