@@ -1,8 +1,7 @@
 ---
 title: Test post please ignore
-description: 
+description: A simple test post
 tags: test, ignore
-draft: true
 ---
 
 This is a test, fyi

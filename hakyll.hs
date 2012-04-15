@@ -32,7 +32,9 @@ main = hakyll $ do
 
     match "home.html" $ do
         route $ customRoute (\_ -> toFilePath "index.html")
-        compile $ pageCompiler
+        compile $ readPageCompiler
+            >>> addDefaultFields
+            >>> arr applySelf
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
@@ -45,6 +47,7 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setRoot `composeRoutes` routePost `composeRoutes` (setExtension "html")
         compile $ pageCompiler
+            >>> arr (setField "scripts" "")
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
