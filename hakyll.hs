@@ -40,6 +40,8 @@ main = hakyll $ do
         route $ setRoot `composeRoutes` routePost `composeRoutes` (setExtension "html")
         compile $ pageCompiler
             >>> arr (setField "scripts" "")
+            >>> arr (renderDateField "date" "%Y-%m-%d" "Unknown date")
+            -- >>> arr (setField "post_title" (getField "path")
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
@@ -52,6 +54,10 @@ main = hakyll $ do
         >>> applyTemplateCompiler "templates/blog.html"
         >>> applyTemplateCompiler "templates/default.html"
         >>> relativizeUrlsCompiler
+
+    match "atom.xml" $ route idRoute
+    create "atom.xml" $ requireAll_ "posts/*"
+        >>> renderAtom feed
 
     -- Projects page
     match "templates/projects.html" $ do
@@ -81,3 +87,13 @@ routePost :: Routes
 routePost = customRoute toBlog
   where
     toBlog x = "blog" </> (toFilePath x)
+
+--------------------------------------------------------------------------------
+-- RSS Feed
+--------------------------------------------------------------------------------
+feed :: FeedConfiguration
+feed = FeedConfiguration { feedTitle = "Daniel's Blog",
+                           feedDescription = "Some ramblings",
+                           feedAuthorName = "Daniel Ge",
+                           feedRoot = "http://danielge.org/"
+                         }
