@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Arrow ((>>>), arr)
 import Data.Monoid (mempty)
+import Data.Text (split, pack, unpack)
 
 import System.FilePath
 
@@ -41,7 +42,7 @@ main = hakyll $ do
         compile $ pageCompiler
             >>> arr (setField "scripts" "")
             >>> arr (renderDateField "date" "%Y-%m-%d" "Unknown date")
-            -- >>> arr (setField "post_title" (getField "path")
+            >>> arr (setPostTitle)
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
@@ -87,6 +88,16 @@ routePost :: Routes
 routePost = customRoute toBlog
   where
     toBlog x = "blog" </> (toFilePath x)
+
+
+--------------------------------------------------------------------------------
+-- Miscellaneous Utilities
+--------------------------------------------------------------------------------
+setPostTitle :: Page a -> Page a
+setPostTitle page = setField "postTitle" value page
+  where
+    value = unpack $ last $ split (=='/') $ pack path
+    path = getField "path" page
 
 --------------------------------------------------------------------------------
 -- RSS Feed
