@@ -74,25 +74,35 @@ main = hakyll $ do
 -------------------------------------------------------------------------------
 -- Utility routing functions
 -------------------------------------------------------------------------------
+{- Routes a file to a folder path. For example, `routeToDir "foo.html"` routes
+ - the file to "foo/index.html", or just simply "foo/".
+ -}
 routeToDir :: Routes
 routeToDir = customRoute fileToDir
   where   -- fileToDir :: Identifier a -> FilePath
     fileToDir x = dropExtension (toFilePath x) </> "index.html"
 
+{- Routes a file to one directory above. For example, `setRoot "/foo/bar.html"`
+ - routes the file to "/bar.html"
+ -}
 setRoot :: Routes
 setRoot = customRoute stripTopDir
   where
     stripTopDir = joinPath . tail . splitPath . toFilePath
 
+{- Routes a file to the "blog/" directory -}
 routePost :: Routes
 routePost = customRoute toBlog
   where
     toBlog x = "blog" </> (toFilePath x)
 
-
 --------------------------------------------------------------------------------
 -- Miscellaneous Utilities
 --------------------------------------------------------------------------------
+{- The postTitle variable is used within each Disqus <script> insert to uniquely
+ - identify each blog post. This function grabs the filename from the $path$
+ - variable that is automatically set on each post and returns it.
+ -}
 setPostTitle :: Page a -> Page a
 setPostTitle page = setField "postTitle" value page
   where
