@@ -64,6 +64,7 @@ main = hakyll $ do
     match "templates/projects.html" $ do
         route $ setRoot `composeRoutes` routeToDir
         compile $ pageCompiler
+            >>> arr (setField "scripts" "")
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
