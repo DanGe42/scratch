@@ -46,6 +46,31 @@ nav > ul {
   padding: 0px 10px;
 }
 
+nav li {
+  margin: 15px 0px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px 2px #BBB, inset 0px 0px 1px 0px #BBB;
+  z-index: 1;
+}
+
+nav a {
+  display: block;
+  padding: 4px 0px 0px 10px;
+  height: 26px;
+  width: 110px;
+  text-decoration: none;
+  z-index: 0;
+}
+
+nav a:hover {
+  background-clip: padding-box;
+  background-color: #CCC;
+}
+
+nav a:visited {
+  color: #222;
+}
+
 /* Global CSS */
 
 a {
