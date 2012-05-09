@@ -4,15 +4,15 @@
   float: left;
   position: fixed;
   width: 280px;
-  bottom: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   right: auto;
 }
 
 header {
   border-right: 1px solid #AAA;
-  padding: 0px 10px;
-  top: 0px;
+  padding: 0 10px;
+  top: 0;
 }
 
 #site-title {
@@ -31,31 +31,31 @@ footer.sidebar {
   border-top: 1px solid #AAA;
   color: #777;
   font: 12px sans-serif;
-  margin: 0px 10px;
-  padding: 0px;
+  margin: 0 10px;
+  padding: 0;
   top: auto;
 }
 
 nav {
-  margin: 0px 0px 0px 150px;
+  margin: 0 0 0 150px;
   width: 140px;
 }
 
 nav > ul {
   list-style: none;
-  padding: 0px 10px;
+  padding: 0 10px;
 }
 
 nav li {
-  margin: 15px 0px;
+  margin: 15px 0;
   border-radius: 5px;
-  box-shadow: 0px 0px 4px 2px #BBB, inset 0px 0px 1px 0px #BBB;
+  box-shadow: 0 0 4px 2px #BBB, inset 0 0 1px 0 #BBB;
   z-index: 1;
 }
 
 nav a {
   display: block;
-  padding: 4px 0px 0px 10px;
+  padding: 4px 0 0 10px;
   height: 26px;
   width: 110px;
   text-decoration: none;
@@ -94,7 +94,7 @@ a:visited {
   color: #000;
   margin-left: 300px;
   max-width: 620px;
-  padding: 0px 10px;
+  padding: 0 10px;
   position: relative;
 }
 
@@ -126,19 +126,19 @@ a:visited {
 
 /* Page specific CSS */
 
-ul.info-list,
-ul.posts-list {
+.info-list,
+.posts-list {
   list-style: none;
-  padding: 0px;
+  padding: 0;
 }
 
-#content li.post-item {
+#content .post-item {
   margin-bottom: 20px;
 }
 
-#content li.post-item > * {
-  margin: 0px;
-  padding: 0px;
+#content .post-item > * {
+  margin: 0;
+  padding: 0;
   line-height: 24px;
 }
 
@@ -152,6 +152,6 @@ ul.posts-list {
   font-size: 16px;
 }
 
-#content li.post-item h2 a {
+#content .post-item h2 a {
   font-weight: normal;
 }
