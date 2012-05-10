@@ -27,15 +27,6 @@ header {
   text-decoration: none;
 }
 
-footer.sidebar {
-  border-top: 1px solid #AAA;
-  color: #777;
-  font: 12px sans-serif;
-  margin: 0 10px;
-  padding: 0;
-  top: auto;
-}
-
 nav {
   margin: 0 0 0 150px;
   width: 140px;
@@ -90,7 +81,8 @@ a:visited {
 
 /* Content */
 
-#content {
+#content,
+footer {
   color: #000;
   margin-left: 300px;
   max-width: 620px;
@@ -122,6 +114,11 @@ a:visited {
 #content li {
   color: #111;
   font: 18px / 30px "pt-serif",serif;
+}
+
+footer {
+  border-top: 1px solid #AAA;
+  font: 14px "pt-serif",serif;
 }
 
 /* Page specific CSS */
