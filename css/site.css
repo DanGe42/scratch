@@ -1,0 +1,183 @@
+/* Sidebar */
+
+header {
+  border-right: 1px solid #AAA;
+  float: left;
+  padding: 0 10px;
+  position: fixed;
+  width: 200px;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  top: 0;
+}
+
+    header a {
+      font-weight: normal;
+    }
+
+#site-title {
+  font: bold 36px "nimbus-sans",sans-serif;
+  margin: 1em 0;
+  text-align: center;
+}
+
+    #site-title a,
+    #site-title a:visited {
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+nav, #contact-list {
+  color: #333;
+  font: 18px "nimbus-sans",sans-serif;
+  margin: 2em auto;
+  width: 140px;
+}
+
+    nav > ul {
+      list-style: none;
+      padding: 0 10px;
+    }
+
+    nav li {
+      border-bottom: 1px solid #DDD;
+      margin: 0;
+      text-align: center;
+      z-index: 1;
+    }
+
+        nav li:first-of-type {
+          border-top: 1px solid #DDD;
+        }
+
+    nav a {
+      display: block;
+      padding: 8px 10px;
+      text-decoration: none;
+      z-index: 0;
+    }
+
+        nav a:hover {
+          background-color: #DDD;
+        }
+
+        nav a:visited {
+          color: #333;
+        }
+
+    #contact-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #contact-list li {
+      border: 1px solid #EEE;
+      border-radius: 12px;
+      box-shadow: 0 0 2px 1px #EEE, inset 0 0 2px 1px #EEE;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+    #contact-list a {
+      color: #555;
+      display: block;
+      padding: 4px 4px;
+      text-decoration: none;
+    }
+
+        #contact-list a:visited {
+          color: #555;
+        }
+
+/* Global CSS */
+
+a {
+  color: #222;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+    a:hover {
+      color: #222;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: #666;
+    }
+
+/* Content */
+
+#content,
+footer {
+  color: #000;
+  margin-left: 220px;
+  max-width: 620px;
+  padding: 0 10px;
+  position: relative;
+}
+
+#content h1 {
+  color: #111;
+  font: bold 36px "nimbus-sans",sans-serif;
+}
+
+#content h2 {
+  color: #333;
+  font: bold 24px "nimbus-sans",sans-serif;
+}
+
+#content h3 {
+  color: #444;
+  font: bold 18px "nimbus-sans",sans-serif;
+}
+
+#content h4 {
+  color: #666;
+  font: bold 18px "nimbus-sans",sans-serif;
+}
+
+#content p,
+#content li {
+  color: #111;
+  font: 18px / 30px "pt-serif",serif;
+}
+
+footer {
+  border-top: 1px solid #AAA;
+  font: 14px "pt-serif",serif;
+}
+
+/* Page specific CSS */
+
+.info-list,
+.posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+#content .post-item {
+  margin-bottom: 20px;
+}
+
+    #content .post-item > * {
+      margin: 0;
+      padding: 0;
+      line-height: 24px;
+    }
+
+    #content .post-item h2 a {
+      font-weight: normal;
+    }
+
+#content .item-description {
+  color: #282828;
+  font-size: 16px;
+}
+
+#content .item-meta {
+  color: #666;
+  font-size: 16px;
+}
