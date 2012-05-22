@@ -8,7 +8,14 @@ function reverse(str) {
 
 window.onload = function() {
     var emailStr = "ude.nnepu.saes@egnad";
-    var emailElem = document.getElementById("email");
+    
+    // #contact-list > ul
+    var contact_list = document.getElementById("contact-list").firstElementChild;
+
     emailStr = reverse(emailStr);
-    emailElem.innerHTML = "<a href=\"mailto:" + emailStr + "\">" + emailStr + "</a>";
+    var emailElem = document.createElement("li");
+    var emailHtml = "<a href=\"mailto:" + emailStr + "\">Email</a>";
+    emailElem.innerHTML = emailHtml;
+
+    contact_list.insertBefore(emailElem, null);
 };
