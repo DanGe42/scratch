@@ -40,7 +40,6 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setRoot `composeRoutes` routePost `composeRoutes` (setExtension "html")
         compile $ pageCompiler
-            >>> arr (setField "scripts" "")
             >>> arr (renderDateField "date" "%Y-%m-%d" "Unknown date")
             >>> arr (setPostTitle)
             >>> applyTemplateCompiler "templates/post.html"
@@ -50,7 +49,6 @@ main = hakyll $ do
     match "blog.html" $ route routeToDir
     create "blog.html" $ constA mempty
         >>> arr (setField "title" "Recent Posts")
-        >>> arr (setField "scripts" "")
         >>> setFieldPageList recentFirst "templates/post_item.html" "posts" "posts/*"
         >>> applyTemplateCompiler "templates/blog.html"
         >>> applyTemplateCompiler "templates/default.html"
@@ -64,7 +62,6 @@ main = hakyll $ do
     match "templates/projects.html" $ do
         route $ setRoot `composeRoutes` routeToDir
         compile $ pageCompiler
-            >>> arr (setField "scripts" "")
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
