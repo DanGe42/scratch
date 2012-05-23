@@ -181,3 +181,20 @@ footer {
   color: #666;
   font-size: 16px;
 }
+
+/* Projects page */
+
+.project-links {
+  display: inline-block;
+  list-style: none;
+  padding-left: 0;
+}
+
+    .project-links > li {
+      display: inline;
+    }
+
+    .project-links > li > a {
+      font-size: 14px;
+      font-weight: normal;
+    }

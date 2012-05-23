@@ -39,7 +39,9 @@ main = hakyll $ do
     -- Projects page
     match "projects.html" $ do
         route $ routeToDir
-        compile $ pageCompiler
+        compile $ readPageCompiler
+            >>> addDefaultFields
+            >>> arr applySelf
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
