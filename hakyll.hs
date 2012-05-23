@@ -36,6 +36,13 @@ main = hakyll $ do
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
+    -- Projects page
+    match "projects.html" $ do
+        route $ routeToDir
+        compile $ pageCompiler
+            >>> applyTemplateCompiler "templates/default.html"
+            >>> relativizeUrlsCompiler
+
     -- Blogging engine
     match "posts/*" $ do
         route $ setRoot `composeRoutes` routePost `composeRoutes` (setExtension "html")
@@ -57,13 +64,6 @@ main = hakyll $ do
     match "atom.xml" $ route idRoute
     create "atom.xml" $ requireAll_ "posts/*"
         >>> renderAtom feed
-
-    -- Projects page
-    match "templates/projects.html" $ do
-        route $ setRoot `composeRoutes` routeToDir
-        compile $ pageCompiler
-            >>> applyTemplateCompiler "templates/default.html"
-            >>> relativizeUrlsCompiler
 
     -- The rest of the templates
     match "templates/*" $ compile templateCompiler
