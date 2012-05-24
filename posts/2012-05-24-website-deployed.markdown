@@ -51,7 +51,7 @@ server return a page depending on the URL the client requests. In
 Hakyll, we instead write rules that instruct Hakyll on what files
 to generate and where to route them in the site directory based on
 matching. For example, here is one of the routes from my
-[site.hs](https://github.com/DanGe42/hakyll-website/blob/master/site.hs)
+[hakyll.hs](https://github.com/DanGe42/hakyll-website/blob/master/hakyll.hs)
 file:
 
     match "posts/*" $ do
@@ -78,10 +78,10 @@ A very useful feature in Hakyll is Markdown support via
 articles in Markdown and have them converted to HTML seamlessly.
 
 Hakyll makes it easy to live preview your site. Assuming you named
-your file `site.hs`, once you generate the file `site`, you can
-invoke `./site preview` to start a simple server at `0.0.0.0:8000`,
+your file `hakyll.hs`, once you generate the file `hakyll`, you can
+invoke `./hakyll preview` to start a simple server at `0.0.0.0:8000`,
 which you can access to see your changes instantly. Once you are done,
-you can invoke `./site build`, which outputs your entire site into a folder
+you can invoke `./hakyll build`, which outputs your entire site into a folder
 that you can export to your web host.
 
 And, by the way, if you want to look at my website source, it is available
