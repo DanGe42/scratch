@@ -150,6 +150,19 @@ footer {
   font: 14px "pt-serif",serif;
 }
 
+#content pre {
+  background: #EEE;
+  font: 14px / 14px monospace;
+  overflow: auto;
+  padding: 1em;
+}
+
+#content p code {
+  background: #EEE;
+  font: 16px monospace;
+  padding: 0.25em 0.5em;
+}
+
 /* Page specific CSS */
 
 .info-list,
