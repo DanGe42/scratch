@@ -17,12 +17,12 @@ function canvasApp () {
         initPixels(pixels);
 
         var mouseState = {
-            isDown: false
+            isDown: false,
+            previous: null
         };
         canvas.addEventListener('mousedown', eventMouseDown.bind(null, mouseState), false);
         canvas.addEventListener('mousemove', eventMouseMove.bind(null, mouseState), false);
         canvas.addEventListener('mouseup',   eventMouseUp.bind(null, mouseState),   false);
-        setInterval(drawScreen, 100);
     }
 
     function initPixels (pixels) {
@@ -51,16 +51,23 @@ function canvasApp () {
         state.isDown = true;
 
         drawPixel(ctx, mouse.x, mouse.y, "black");
+        state.previous = { x: mouse.x, y: mouse.y };
     }
 
     function eventMouseMove (state, e) {
         if (!state.isDown) return;
 
         var mouse = getMousePosition(e);
-        drawPixel(ctx, mouse.x, mouse.y, "black");
+        ctx.beginPath();
+        ctx.moveTo(state.previous.x, state.previous.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+
+        state.previous = { x: mouse.x, y: mouse.y };
     }
 
     function eventMouseUp (state, e) {
+        state.previous = null;
         state.isDown = false;
     }
 
