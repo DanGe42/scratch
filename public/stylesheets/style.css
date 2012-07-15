@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+#board-div {
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+  float: left;
+  margin-right: 32px;
 }

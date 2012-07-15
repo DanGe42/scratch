@@ -1,2 +1,35 @@
+block append scripts
+  script(src='javascripts/modernizr-2.5.3.js')
+  script(src='javascripts/board.js')
+
 h1= title
-p Welcome to #{title}
+#board-div
+  canvas#board(width=800, height=600) Your browser does not support HTML5 Canvas
+
+form
+  label(for="tool") Drawing tool: 
+  select#tool
+    option(value="freehand", selected) Freehand
+    option(value="line") Line
+  br
+
+  label(for="thickness") Thickness: 
+  select#thickness
+    option(value="1") Hairline
+    option(value="2") Thin
+    option(value="4", selected) Normal
+    option(value="6") Thick
+    option(value="8") Thicker
+    option(value="10") Thickest
+  br
+
+  label(for="color") Color: 
+  select#color
+    option(value="red") Red
+    option(value="blue") Blue
+    option(value="green") Green
+    option(value="orange") Orange
+    option(value="black", selected) Black
+    option(value="yellow") Yellow
+  br
+
