@@ -36,7 +36,7 @@ var form = {
 
 exports.index = function(req, res){
   res.render('index', {
-      title: 'Express',
+      title: 'Flockboard',
       tool: form.tool,
       thickness: form.thickness,
       color: form.color
