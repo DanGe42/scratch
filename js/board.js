@@ -8,6 +8,12 @@ function canvasApp () {
     var canvas = document.getElementById("board");
     var ctx = canvas.getContext("2d");
 
+    // Constants
+    var TOOLS = {
+        FREEHAND: "freehand",
+        LINE: "line"
+    };
+
     var pixels = {}
 
     init();
@@ -16,13 +22,58 @@ function canvasApp () {
     function init () {
         initPixels(pixels);
 
+        // Canvas defaults
+        ctx.lineCap = "round";
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "black";
+
         var mouseState = {
             isDown: false,
             previous: null
         };
-        canvas.addEventListener('mousedown', eventMouseDown.bind(null, mouseState), false);
-        canvas.addEventListener('mousemove', eventMouseMove.bind(null, mouseState), false);
-        canvas.addEventListener('mouseup',   eventMouseUp.bind(null, mouseState),   false);
+        var editMode = {
+            data: null,
+            tool: TOOLS.FREEHAND,
+            thickness: 4        // "normal" thickness
+        }
+
+        initForm(editMode);
+
+        canvas.addEventListener('mousedown',
+                                eventMouseDown.bind(null, mouseState, editMode),
+                                false);
+        canvas.addEventListener('mousemove',
+                                eventMouseMove.bind(null, mouseState, editMode),
+                                false);
+        canvas.addEventListener('mouseup',
+                                eventMouseUp.bind(null, mouseState, editMode),
+                                false);
+    }
+
+    function initForm(state) {
+        var handlerFactory = function(state, attr) {
+            return function (e) {
+                var target = e.target;
+                state[attr] = target.value;
+            };
+        };
+
+        var formElement;
+        formElement = document.getElementById("tool");
+        formElement.addEventListener('change',
+                                     handlerFactory(state, "tool"), false);
+
+        formElement = document.getElementById("thickness");
+        formElement.addEventListener('change',
+                                     handlerFactory(state, "thickness"), false);
+        formElement.addEventListener('change',
+                                     function (e) { ctx.lineWidth = e.target.value },
+                                     false);
+
+        formElement = document.getElementById("color");
+        formElement.addEventListener('change',
+                                     function (e) { ctx.strokeStyle = e.target.value },
+                                     false);
     }
 
     function initPixels (pixels) {
@@ -46,29 +97,55 @@ function canvasApp () {
     // Event handlers
     // --------------------------------------------------
 
-    function eventMouseDown (state, e) {
+    function eventMouseDown (state, editor, e) {
+        if (e.button != 0) return;  // disregard other clicks
+
         var mouse = getMousePosition(e);
         state.isDown = true;
 
-        drawPixel(ctx, mouse.x, mouse.y, "black");
+        switch (editor.tool) {
+            case TOOLS.FREEHAND:
+                drawPixel(ctx, mouse.x, mouse.y, "black");
+                break;
+            case TOOLS.LINE:
+                editor.data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                break;
+        }
         state.previous = { x: mouse.x, y: mouse.y };
     }
 
-    function eventMouseMove (state, e) {
+    function eventMouseMove (state, editor, e) {
+        if (e.button != 0) return;  // disregard other clicks
+
         if (!state.isDown) return;
-
         var mouse = getMousePosition(e);
-        ctx.beginPath();
-        ctx.moveTo(state.previous.x, state.previous.y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.stroke();
 
-        state.previous = { x: mouse.x, y: mouse.y };
+        switch (editor.tool) {
+            case TOOLS.FREEHAND:
+                ctx.beginPath();
+                ctx.moveTo(state.previous.x, state.previous.y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.stroke();
+
+                state.previous = { x: mouse.x, y: mouse.y };
+                break;
+            case TOOLS.LINE:
+                ctx.putImageData(editor.data, 0, 0) 
+
+                ctx.beginPath();
+                ctx.moveTo(state.previous.x, state.previous.y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.stroke();
+                break;
+        }
     }
 
-    function eventMouseUp (state, e) {
+    function eventMouseUp (state, editor, e) {
+        if (e.button != 0) return;  // disregard other clicks
+
         state.previous = null;
         state.isDown = false;
+        state.data = null;
     }
 
     // Helper function to get mouse event positions
