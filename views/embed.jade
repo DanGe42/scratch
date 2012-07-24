@@ -1,0 +1,45 @@
+block append scripts
+  script(src='javascripts/modernizr-2.5.3.js')
+  script(src='javascripts/jquery-1.7.2.js')
+  script(src='javascripts/board.js')
+  script(src='javascripts/send.js')
+
+canvas#pad(height=250, width=250) Your browser does not support Canvas :(
+
+div#tools-container(style="display: none;")
+  form#tools-form
+    fieldset
+      label(for="tool") Drawing tool:
+      br
+      select#tool
+        option(value="freehand", selected) Freehand
+        option(value="line") Line
+        option(value="eraser") Eraser
+      br
+
+    fieldset
+      label(for="thickness") Thickness:
+      br
+      select#thickness
+        option(value="1") Hairline
+        option(value="2") Thin
+        option(value="4", selected) Normal
+        option(value="6") Thick
+        option(value="8") Thicker
+        option(value="10") Thickest
+      br
+
+    fieldset
+      label(for="color") Color:
+      br
+      select#color
+        option(value="red") Red
+        option(value="blue") Blue
+        option(value="green") Green
+        option(value="orange") Orange
+        option(value="black", selected) Black
+        option(value="yellow") Yellow
+      br
+
+//button#send-button(style="display:none;") Send data
+button#send-button Send data
