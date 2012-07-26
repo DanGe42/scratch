@@ -41,5 +41,7 @@ div#tools-container(style="display: none;")
         option(value="yellow") Yellow
       br
 
-//button#send-button(style="display:none;") Send data
-button#send-button Send data
+form#secret-form(name="secret-form", method="post", action="/upload", style="")
+  input(type="hidden", name="_csrf", value="#{token}")
+  input(type="hidden", name="image")
+  input#send-button(type="submit") Upload
