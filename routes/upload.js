@@ -16,10 +16,11 @@ var throwErrorOr = function (error) {
 };
 
 var uploadFile = function(filename, date, buffer, success) {
-    fs.mkdir("uploads", '0777', function(err1) {
+    var uploads_dir = __dirname + "/uploads";
+    fs.mkdir(uploads_dir, '0777', function(err1) {
         throwErrorOr(err1);
 
-        var date_folder = "uploads/" +
+        var date_folder = uploads_dir +
                         date.getUTCFullYear() + "-" + date.getUTCMonth() + "-" +
                         date.getUTCDate();
 
