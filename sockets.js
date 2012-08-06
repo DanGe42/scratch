@@ -31,6 +31,7 @@ exports.setup_sockets = function(io) {
               socket.join(room);
               socket.emit('room', { room: room });
               socket.emit('info', { msg: "You have joined the room '" + room + "'." });
+              io.sockets.in(room).emit('info', { msg: username + " has joined the room." });
             }
             else {
               socket.emit('error', { msg: "Invalid /join command" });
@@ -38,6 +39,7 @@ exports.setup_sockets = function(io) {
             break;
           case "part":
             if (room) {
+              io.sockets.in(room).emit('info', { msg: username + " has left the room." });
               socket.leave(room);
               room = null;
               socket.emit('room', { room: null });
