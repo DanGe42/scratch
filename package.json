@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.0.0rc1",
     "jade": "*",
-    "cron": "~1.0"
+    "cron": "~0.3",
+    "time": "~0.8"
   }
 }
