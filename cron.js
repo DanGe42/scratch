@@ -30,19 +30,14 @@ exports.mooJob = function() {
 
             res.on('end', function () {
               var parsed = JSON.parse(data);
-              try {
-                if (res.statusCode === 200) {
-                  console.log("200 OK! Message successfully posted to room " + room + ".");
-                  console.log("The status of this request is -- '" + parsed["status"]);
-                }
-                else {
-                  console.log("Bad status code returned: " + res.statusCode);
-                  console.log("Error type: " + parsed["type"]);
-                  console.log("Why: " + parsed["message"]);
-                }
-              } catch (err) {
-                console.log("An internal server error while parsing the response.");
-                console.log(err);
+              if (res.statusCode === 200) {
+                console.log("200 OK! Message successfully posted!");
+                console.log("The status of this request is -- '" + parsed["status"]);
+              }
+              else {
+                console.log("Bad status code returned: " + res.statusCode);
+                console.log("Error type: " + parsed["type"]);
+                console.log("Why: " + parsed["message"]);
               }
             });
 
