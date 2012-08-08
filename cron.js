@@ -16,13 +16,9 @@ exports.mooJob = function() {
     onTick: function() {
       console.log("Starting Hipchat job...");
 
-      var token = config["hipchat_token"];
-
       cow.moo(function (error, stdout, stderr) {
         if (error === null) {
-          var room = "Test";
-
-          hipchat.sendToHipchat(token, room, stdout, function(res) {
+          hipchat.sendToHipchat(config.hipchat, stdout, function(res) {
             var data = "";
             res.on('data', function (chunk) {
               data += chunk;
