@@ -12,7 +12,7 @@ var TZ = "America/Los Angeles";
 exports.mooJob = function() {
   // Run this cron job every two hours from 10:00 AM to 8:00 PM every day
   var job = new CronJob({
-    cronTime: '0 0 9-19/2 * * *',
+    cronTime: '0 0 9-19 * * *',
     onTick: function() {
       console.log("Starting Hipchat job...");
 
