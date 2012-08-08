@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Get the machine set up
 
@@ -18,7 +18,7 @@ echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
 
 git clone git://github.com/joyent/node.git
 cd node
-git checkout '0.8.4'
+git checkout 'v0.8.4'
 ./configure --prefix=~/local
 make install
 cd ..
