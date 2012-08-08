@@ -7,12 +7,12 @@ var CronJob = require('cron').CronJob,
 var onComplete = function() {
   console.log("Job finished at " + new Date());
 };
-var TZ = "America/Los Angeles";
+var TZ = "US/Pacific";
 
 exports.mooJob = function() {
   // Run this cron job every two hours from 10:00 AM to 8:00 PM every day
   var job = new CronJob({
-    cronTime: '0 0 9-19 * * *',
+    cronTime: '0 0 10-20 * * *',
     onTick: function() {
       console.log("Starting Hipchat job...");
 
