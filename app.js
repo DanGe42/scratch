@@ -33,6 +33,7 @@ app.configure('production', function() {
 });
 
 app.get('/', routes.index);
+app.get('/status', routes.status.bind(null, mooJob));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

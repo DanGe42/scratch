@@ -13,3 +13,11 @@ exports.index = function(req, res){
     res.render('index', { title: 'Moo', moo: stdout });
   });
 };
+
+exports.status = function(job, req, res) {
+  var status = "STOPPED";
+  if (job["running"]) {
+    status = "RUNNING";
+  }
+  res.render('status', { title: 'Status', status: status });
+};
