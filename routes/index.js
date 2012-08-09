@@ -21,3 +21,15 @@ exports.status = function(job, req, res) {
   }
   res.render('status', { title: 'Status', status: status });
 };
+
+exports.killswitch = function(job, req, res) {
+  console.log("hipjob stopped");
+  job.stop();
+  res.send(200, "No hard feelings");
+};
+
+exports.start = function(job, req, res) {
+  console.log("hipjob started");
+  job.start();
+  res.send(200, "I'm back!");
+};
