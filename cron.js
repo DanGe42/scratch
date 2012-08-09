@@ -4,56 +4,54 @@ var CronJob = require('cron').CronJob,
     time = require('time'),
     cow = require('./lib/cow');
 
-var onComplete = function() {
-  console.log("Job finished at " + new Date());
-};
 var TZ = "US/Pacific";
+
+var cowCallback = function (error, stdout, stderr) {
+  if (error === null) {
+    hipchat.sendToHipchat(config.hipchat, stdout, function(res) {
+      var data = "";
+      res.on('data', function (chunk) {
+        data += chunk;
+      });
+      res.on('close', function (err) {
+        console.error("The connection terminated unexpectedly.");
+        console.error(err);
+      });
+
+      res.on('end', function () {
+        var parsed = JSON.parse(data);
+        if (res.statusCode === 200) {
+          console.log("--> 200 OK! Message successfully posted!");
+          console.log("The status of this request is -- %s'", parsed["status"]);
+        }
+        else {
+          console.error("--> Bad status code returned: %d", res.statusCode);
+          console.error("Error type: %s", parsed["type"]);
+          console.error("Why: %s", parsed["message"]);
+        }
+      });
+
+    });
+  }
+  else {
+    console.error("An error occurred while executing the shell command.");
+    console.error("Maybe stderr might help?");
+    console.error(stderr);
+    console.error("Or maybe the error dump from Node?");
+    console.error(error);
+  }
+};
 
 exports.mooJob = function() {
   // Run this cron job every two hours from 10:00 AM to 8:00 PM every day
   var job = new CronJob({
-    cronTime: '0 0 10-20 * * *',
+    cronTime: config["cron"],
     onTick: function() {
-      console.log("Starting Hipchat job...");
+      console.log("--> Starting Hipchat job at %s...", (new Date()).toString());
 
-      cow.moo(function (error, stdout, stderr) {
-        if (error === null) {
-          hipchat.sendToHipchat(config.hipchat, stdout, function(res) {
-            var data = "";
-            res.on('data', function (chunk) {
-              data += chunk;
-            });
-            res.on('close', function (err) {
-              console.log("The connection terminated unexpectedly.");
-              console.log(err);
-            });
-
-            res.on('end', function () {
-              var parsed = JSON.parse(data);
-              if (res.statusCode === 200) {
-                console.log("200 OK! Message successfully posted!");
-                console.log("The status of this request is -- '" + parsed["status"]);
-              }
-              else {
-                console.log("Bad status code returned: " + res.statusCode);
-                console.log("Error type: " + parsed["type"]);
-                console.log("Why: " + parsed["message"]);
-              }
-            });
-
-          });
-        }
-        else {
-          console.log("An error occurred while executing the shell command.");
-          console.log("Maybe stderr might help?");
-          console.log(stderr);
-          console.log("Or maybe the error dump from Node?");
-          console.log(error);
-        }
-      });
+      cow.moo('tux', cowCallback);
     },
 
-    onComplete: onComplete,
     start: false,
     timeZone: TZ
   });
