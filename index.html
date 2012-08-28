@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ping</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    window.onload = function() {
+      var socket = io.connect("http://localhost");
+      socket.on('ping', function(data) {
+        var seq = data["seq"];
+        socket.emit('pong', { seq: seq + 1 });
+      });
+    }
+  </script>
+</head>
+<body>
+  <p>Pinging server</p>
+</body>
+</html>
