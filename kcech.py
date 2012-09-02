@@ -24,7 +24,7 @@ def update():
 @app.route('/about')
 def about():
     """ Render the about page """
-    return "Hi, I'm Daniel Ge"
+    return render_template('about.html')
 
 
 if __name__ == '__main__':
