@@ -39,10 +39,12 @@ $(document).ready(function() {
 
   function populate_rankings(floor_list, data) {
     var create_li = function (ranked_list, index) {
-      var $li = $("<li><a>" + ranked_list[index] + "</a></li>");
-      $li.click(function() {
+      var $li = $("<li><a href='#'>" + ranked_list[index] + "</a></li>");
+      $li.click(function(e) {
         $(".tasks-list").hide();
         $("#team-" + index).show();
+
+        e.preventDefault();
       });
 
       return $li;
