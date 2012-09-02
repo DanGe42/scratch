@@ -14,7 +14,7 @@ main = hakyll $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
-    
+
     match "js/*" $ do
         route   idRoute
         compile copyFileCompiler
@@ -116,5 +116,6 @@ feed :: FeedConfiguration
 feed = FeedConfiguration { feedTitle = "Daniel's Blog",
                            feedDescription = "Some ramblings",
                            feedAuthorName = "Daniel Ge",
+                           feedAuthorEmail = "",
                            feedRoot = "http://danielge.org/"
                          }
