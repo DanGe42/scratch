@@ -12,7 +12,6 @@ PASSWORD = config.password
 @app.route('/')
 def index():
     """ Render the home page with the graph """
-
     return render_template('index.html')
 
 @app.route('/update')
