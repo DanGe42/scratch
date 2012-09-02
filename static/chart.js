@@ -65,11 +65,17 @@ $(document).ready(function() {
       var $div = $("<div id='team-" + i + "' class='tasks-list'></div>");
       $div.append("<h2>" + ranked_list[i] + "'s completed tasks</h2>");
 
-      var $ul = $("<ul></ul>")
-      for (var j = 0; j < data[ranked_list[i]].length; j += 1) {
-        $ul.append("<li>" + data[ranked_list[i]][j] + "</li>");
+      var task_list = data[ranked_list[i]]
+      var $task_display;
+      if (task_list.length > 0) {
+        var $task_display = $("<ul></ul>")
+        for (var j = 0; j < task_list.length; j += 1) {
+          $task_display.append("<li>" + task_list[j] + "</li>");
+        }
+      } else {
+        $task_display = $("<p>There's nothing here :(</p>");
       }
-      $div.append($ul);
+      $div.append($task_display);
       $tasks.append($div);
     }
 
