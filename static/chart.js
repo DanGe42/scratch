@@ -37,6 +37,19 @@ $(document).ready(function() {
     return chart;
   }
 
+  function populate_rankings(floor_list, count_list) {
+    ranked_list = floor_list.slice();
+    ranked_list.sort(function(a, b) {
+      return count_list[b] - count_list[a];
+    });
+
+    var $rankings = $("#rankings");
+    $("#rankings-container").show();
+    for (var i = 0; i < ranked_list.length; i += 1) {
+      $rankings.append("<li>" + ranked_list[i] + "</li>");
+    }
+  }
+
   $.getJSON('/update', function(data) {
     var data = data["data"];
     console.log(data);
@@ -56,6 +69,8 @@ $(document).ready(function() {
     }
 
     var chart = renderChart(floor_list, count_list);
+
+    populate_rankings(floor_list, count_list);
   });
 });
 
