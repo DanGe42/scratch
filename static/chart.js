@@ -52,7 +52,6 @@ $(document).ready(function() {
 
   $.getJSON('/update', function(data) {
     var data = data["data"];
-    console.log(data);
     var floor_list = [];
 
     for (floor in data) {
