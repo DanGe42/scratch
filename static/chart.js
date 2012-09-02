@@ -37,17 +37,41 @@ $(document).ready(function() {
     return chart;
   }
 
-  function populate_rankings(floor_list, count_list) {
-    ranked_list = floor_list.slice();
+  function populate_rankings(floor_list, data) {
+    var create_li = function (ranked_list, index) {
+      var $li = $("<li><a>" + ranked_list[index] + "</a></li>");
+      $li.click(function() {
+        $(".tasks-list").hide();
+        $("#team-" + index).show();
+      });
+
+      return $li;
+    };
+
+    var ranked_list = floor_list.slice();
     ranked_list.sort(function(a, b) {
-      return count_list[b] - count_list[a];
+      return data[b].length - data[a].length;
     });
 
     var $rankings = $("#rankings");
+    var $tasks = $("#tasks");
+
     $("#rankings-container").show();
     for (var i = 0; i < ranked_list.length; i += 1) {
-      $rankings.append("<li>" + ranked_list[i] + "</li>");
+      $rankings.append(create_li(ranked_list, i));
+
+      var $div = $("<div id='team-" + i + "' class='tasks-list'></div>");
+      $div.append("<h2>" + ranked_list[i] + "'s completed tasks</h2>");
+
+      var $ul = $("<ul></ul>")
+      for (var j = 0; j < data[ranked_list[i]].length; j += 1) {
+        $ul.append("<li>" + data[ranked_list[i]][j] + "</li>");
+      }
+      $div.append($ul);
+      $tasks.append($div);
     }
+
+    $(".tasks-list").hide();
   }
 
   $.getJSON('/update', function(data) {
@@ -69,7 +93,7 @@ $(document).ready(function() {
 
     var chart = renderChart(floor_list, count_list);
 
-    populate_rankings(floor_list, count_list);
+    populate_rankings(floor_list, data);
   });
 });
 

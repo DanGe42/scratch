@@ -15,3 +15,13 @@ body {
 #rankings-container {
   display: none;
 }
+
+#rankings-list {
+  float: left;
+  width: 50%;
+}
+
+#tasks {
+  float: right;
+  width: 50%;
+}
