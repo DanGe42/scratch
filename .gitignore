@@ -3,5 +3,6 @@ _cache/
 _site/
 *~
 hakyll
+site
 *.hi
 *.o
