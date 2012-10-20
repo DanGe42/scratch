@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HelloNFC</string>
+    <string name="write_tag_label">Enter something to write</string>
+    <string name="input_tag_hint">FEED ME INTEGERS!</string>
+    <string name="write_tag_button">Write Tag</string>
+    <string name="read_tag_button">Read Tag</string>
+
+    <string name="nfc_wait_text">Tap your device on the tag</string>
+
+    <string name="read_id_label">ID</string>
+    <string name="read_text_label">Text</string>
+</resources>
