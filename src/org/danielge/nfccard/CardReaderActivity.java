@@ -33,6 +33,23 @@ public class CardReaderActivity extends NdefReaderActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBundle("data", bundleData());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        Bundle data = savedInstanceState.getBundle("data");
+        if (data != null) {
+            unbundleData(data);
+        }
+    }
+
+    @Override
     protected void onNdefMessage(NdefMessage message) {
         clearAllTextViews();
 
@@ -106,13 +123,28 @@ public class CardReaderActivity extends NdefReaderActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
+        intent.putExtra("data", bundleData());
+
+        startActivity(intent);
+    }
+
+    private Bundle bundleData() {
+        Bundle bundle = new Bundle();
         for (int tvId : CardUtils.getReaderViews()) {
             TextView textView = (TextView) findViewById(tvId);
 
-            intent.putExtra(CardUtils.encodeFromReader(textView), textView.getText());
+            bundle.putCharSequence(CardUtils.encodeFromReader(textView),
+                    textView.getText());
         }
 
-        startActivity(intent);
+        return bundle;
+    }
+
+    private void unbundleData (Bundle bundle) {
+        for (String key : bundle.keySet()) {
+            TextView tv = (TextView) findViewById(CardUtils.decodeFromReader(key));
+            tv.setText(bundle.getCharSequence(key, ""));
+        }
     }
 
     private IntentFilter buildIntentFilter() {

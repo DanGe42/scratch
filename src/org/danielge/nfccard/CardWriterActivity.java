@@ -51,12 +51,45 @@ public class CardWriterActivity extends NfcWriterActivity {
 
         Intent intent = getIntent();
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            Bundle extras = intent.getExtras();
-            for (int etId : CardUtils.getWriterViews()) {
-                EditText editText = (EditText) findViewById(etId);
+            unbundleData(intent.getBundleExtra("data"));
+        }
+    }
 
-                editText.setText(extras.getString(CardUtils.encode(editText), ""));
-            }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBundle("data", bundleData());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        Bundle data = savedInstanceState.getBundle("data");
+        if (data != null) {
+            unbundleData(data);
+        }
+    }
+
+    private Bundle bundleData() {
+        Bundle bundle = new Bundle();
+        for (int etId : CardUtils.getWriterViews()) {
+            EditText editText = (EditText) findViewById(etId);
+
+            bundle.putCharSequence(CardUtils.encodeFromWriter(editText),
+                    editText.getText());
+        }
+
+        return bundle;
+    }
+
+    private void unbundleData (Bundle bundle) {
+        if (bundle == null) return;
+
+        for (String key : bundle.keySet()) {
+            EditText et = (EditText) findViewById(CardUtils.decodeFromWriter(key));
+            et.setText(bundle.getCharSequence(key, ""));
         }
     }
 
@@ -97,7 +130,7 @@ public class CardWriterActivity extends NfcWriterActivity {
                               positionInput, twitterInput, websiteInput };
 
         for (EditText input : inputs) {
-            encoding += String.format("%s=%s", CardUtils.encode(input),
+            encoding += String.format("%s=%s", CardUtils.encodeFromWriter(input),
                     input.getText().toString()) + CardUtils.SEPARATOR;
         }
 

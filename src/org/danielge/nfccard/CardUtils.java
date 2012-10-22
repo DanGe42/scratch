@@ -62,11 +62,11 @@ public class CardUtils {
         encodingToReadView = reverseMap(readViewToEncoding);
     }
 
-    public static String encode (View v) {
+    public static String encodeFromWriter(View v) {
         return writeViewToEncoding.get(v.getId());
     }
 
-    public static int decode (String shortName) {
+    public static int decodeFromWriter(String shortName) {
         return encodingToWriteView.get(shortName);
     }
 
