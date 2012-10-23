@@ -25,6 +25,9 @@ public class MainActivity extends Activity
     }
 
     public void writeAction (View v) {
-        startActivity(new Intent(this, CardWriterActivity.class));
+        Intent intent = new Intent(this, CardWriterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 }
