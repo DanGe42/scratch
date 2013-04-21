@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ISSBaseStation</string>
+    <string name="web_refresh_text">Refresh</string>
+</resources>
