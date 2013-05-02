@@ -1,3 +1,8 @@
+# Notice
+
+This website has been deprecated. Please see
+[my new website](https://github.com/DanGe42/hakyll4-website).
+
 Running
 =======
 To download and 'install' this project, make sure you have all dependencies
