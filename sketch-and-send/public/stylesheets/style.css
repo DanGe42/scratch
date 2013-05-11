@@ -1,0 +1,22 @@
+body,
+#pad {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 250px;
+  height: 250px;
+}
+
+#embed-pad {
+  width: 260px;
+  height: 260px;
+  border: 1px solid black;
+}
+iframe[seamless]{
+    background-color: transparent;
+    border: 0px none transparent;
+    padding: 0px;
+    overflow: hidden;
+}

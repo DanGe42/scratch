@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/req_field_label"
+        android:text="@string/name_label" />
+
+    <EditText
+        android:id="@+id/name_input"
+        style="@style/req_field_input"
+        android:inputType="textCapWords" />
+
+    <TextView
+        style="@style/req_field_label"
+        android:text="@string/email_label" />
+
+    <EditText
+        android:id="@+id/email_input"
+        style="@style/req_field_input"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/phone_label" />
+
+    <EditText
+        android:id="@+id/phone_input"
+        style="@style/field_input"
+        android:inputType="phone" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/work_school_label" />
+
+    <EditText
+        android:id="@+id/work_school_input"
+        style="@style/field_input"
+        android:inputType="textCapSentences" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/position_major_label" />
+
+    <EditText
+        android:id="@+id/position_major_input"
+        style="@style/field_input"
+        android:inputType="text" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/twitter_label" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/field_prefix"
+            android:text="@string/twitter_prefix" />
+
+        <EditText
+            android:id="@+id/twitter_input"
+            style="@style/field_input"
+            android:inputType="textUri" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/website_label" />
+
+    <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal">
+
+        <TextView
+            style="@style/field_prefix"
+            android:text="@string/website_prefix" />
+
+        <EditText
+            android:id="@+id/website_input"
+            style="@style/field_input"
+            android:inputType="textUri" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/desc_label" />
+
+    <EditText
+        android:id="@+id/desc_input"
+        style="@style/field_input"
+        android:layout_height="96sp"
+        android:inputType="textMultiLine|textCapSentences" />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:text="@string/write_tag_button"
+        android:onClick="writeTagAction" />
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BusinessCard</string>
+    <!-- MainActivity -->
+    <string name="read_activity_button">Read a card</string>
+    <string name="write_activity_button">Make a card</string>
+
+    <string name="nfc_wait_text">Tap this device to the tag to write</string>
+
+    <!-- Card fields -->
+    <string name="name_label">Name</string>
+    <string name="email_label">Email</string>
+    <string name="phone_label">Phone</string>
+    <string name="work_school_label">Work or School</string>
+    <string name="position_major_label">Occupation or Concentration</string>
+    <string name="twitter_label">Twitter</string>
+    <string name="website_label">Website</string>
+    <string name="desc_label">Bio</string>
+    <string name="twitter_prefix">\@</string>
+    <string name="website_prefix">http://</string>
+
+    <string name="write_tag_button">Write to tag</string>
+    <string name="edit_tag_action">Edit/Copy tag</string>
+</resources>
