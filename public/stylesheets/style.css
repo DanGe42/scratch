@@ -1,0 +1,7 @@
+#board-div {
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+  float: left;
+  margin-right: 32px;
+}
