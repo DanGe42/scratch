@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:onClick="editTagAction"
+        android:text="@string/edit_tag_action" />
+
+    <TextView
+        style="@style/req_field_label"
+        android:text="@string/name_label" />
+
+    <TextView
+        android:id="@+id/name_value"
+        style="@style/req_field_value" />
+
+    <TextView
+        style="@style/req_field_label"
+        android:text="@string/email_label" />
+
+    <TextView
+        android:id="@+id/email_value"
+        style="@style/req_field_value" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/phone_label" />
+
+    <TextView
+        android:id="@+id/phone_value"
+        style="@style/field_value" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/work_school_label" />
+
+    <TextView
+        android:id="@+id/work_school_value"
+        style="@style/field_value" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/position_major_label" />
+
+    <TextView
+        android:id="@+id/position_major_value"
+        style="@style/field_value" />
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/twitter_label" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/field_prefix"
+            android:text="@string/twitter_prefix" />
+
+        <TextView
+            android:id="@+id/twitter_value"
+            style="@style/field_value" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/website_label" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/field_prefix"
+            android:text="@string/website_prefix" />
+
+        <TextView
+            android:id="@+id/website_value"
+            style="@style/field_value" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/field_label"
+        android:text="@string/desc_label" />
+
+    <TextView
+        android:id="@+id/desc_value"
+        style="@style/field_value" />
+
+</LinearLayout>

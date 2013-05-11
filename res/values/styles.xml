@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="field_label">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+    <style name="req_field_label"
+           parent="@style/field_label">
+    </style>
+
+    <style name="field_input">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+    <style name="req_field_input"
+           parent="@style/field_input">
+    </style>
+
+    <style name="field_prefix">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="field_value">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="req_field_value"
+           parent="@style/field_value">
+   </style>
+
+</resources>
