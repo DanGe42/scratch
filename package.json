@@ -1,0 +1,13 @@
+{
+    "name": "socket.io-ping",
+    "version": "0.0.1",
+    "author": "Daniel Ge <dange@seas.upenn.edu>",
+    "private": true,
+    "description": "a simple ping utility for socket.io",
+    "scripts": {
+        "start": "node app"
+    },
+    "dependencies": {
+        "socket.io": "~0.9"
+    }
+}
