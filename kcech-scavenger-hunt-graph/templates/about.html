@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+  {{ super() }}
+  <h1>About this site</h1>
+  <p>This site was built to visualize the progress of all floors in Kings Court
+  English College House in the annual NSO house-wide scavenger hunt.</p>
+
+  <h2>Data source</h2>
+  <p>The data originates from a spreadsheet to which only KCECH staff have access.
+  That said, these are not the official rankings.</p>
+
+  <h2>Technology stack</h2>
+  <p>This site runs on a <a href="http://flask.pocoo.org/">Python backend</a>
+  and utilizes <a href="http://www.highcharts.com">Highcharts</a> to render
+  the chart. This is currently hosted from Amazon EC2.</p>
+
+  <p>Oh, by the way,
+  <a href="https://github.com/DanGe42/kcech-scavenger-hunt-graph">
+    fork me on Github</a>!</p>
+
+  <h2>About me</h2>
+  <p>My name is Daniel Ge. I live on the second floor of Kings Court,
+  i.e. STWing. I am also KCECH's ITA Manager. Visit my website at
+  <a href="http://www.danielge.org/">danielge.org</a></p>
+
+{% endblock %}
