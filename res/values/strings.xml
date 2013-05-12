@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ISSBaseStation</string>
+    <string name="web_refresh_text">Refresh</string>
+    <string name="pref_base_hostname_title">Base hostname</string>
+    <string name="pref_base_hostname_summary">Hostname/IP of the base station</string>
+    <string name="prefs_item_title">Settings</string>
+    <string name="azimuth_text">Azimuth</string>
+    <string name="elevation_text">Elevation</string>
+    <string name="submit_button_text">Submit</string>
+    <string name="change_view_text">Test Base</string>
+</resources>
