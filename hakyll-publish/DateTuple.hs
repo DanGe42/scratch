@@ -10,13 +10,15 @@ module DateTuple (
 import Data.Time.Calendar (toGregorian)
 import Data.Time.LocalTime (localDay, zonedTimeToLocalTime, getZonedTime)
 import Control.Monad (liftM)
+import Util (padLeft)
 
 -- |A type class wrapping a date tuple. The date tuple is formatted as
 -- (year, month, day).
 newtype DateTuple = DateTuple (Integer, Int, Int)
 instance Show DateTuple where
   show (DateTuple (year,month,day)) =
-    show year ++ "-" ++ show month ++ "-" ++ show day
+    show year ++ "-" ++ pad (show month) ++ "-" ++ pad (show day)
+    where pad = padLeft '0' 2
 
 -- |Retrieves the current local time (determined by the system clock) and
 -- returns it as a 'DateTuple'.

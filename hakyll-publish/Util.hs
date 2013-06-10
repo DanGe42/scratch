@@ -2,7 +2,8 @@
 
 -- |Collection of utility functions.
 module Util (stringSplit,
-             maybeRead
+             maybeRead,
+             padLeft
             ) where
 
 import Data.Text (pack, unpack, split)
@@ -19,3 +20,8 @@ maybeRead = fmap fst . listToMaybe . reads
 -- |Dead-simple string-splitting using 'Text.split'. Not efficient.
 stringSplit :: String -> Char -> [String]
 stringSplit s c = map unpack $ split (== c) $ pack s
+
+-- |Pad the left side of a string up to a specified length with the specified
+-- character.
+padLeft :: Char -> Int -> String -> String
+padLeft c len str = replicate (len - length str) c ++ str
